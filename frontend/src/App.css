@@ -1,0 +1,24 @@
+:root {
+  --primary-blue: #0b2e4c;
+  --accent-gold: #e2ab23;
+  --bg-light: #f8fafc;
+  --text-dark: #1e293b;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text-dark);
+  background-color: var(--bg-light);
+}
+
+.bg-primary { background-color: var(--primary-blue); }
+.text-primary { color: var(--primary-blue); }
+.bg-gold { background-color: var(--accent-gold); }
+.text-gold { color: var(--accent-gold); }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}

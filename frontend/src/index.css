@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --navy-dark: #071f34;
+  --navy-main: #0b2e4c;
+  --gold: #e2ab23;
+  --card-bg: #edf3f8;
+  --text-dark: #101828;
+  --text-muted: #475467;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-dark);
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Curved Hero Wrapper */
+.hero-wrapper {
+  background: linear-gradient(180deg, #f8fafc 0%, #edf3f8 100%);
+  position: relative;
+  padding-bottom: 60px;
+}
+
+.hero-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: #ffffff;
+  clip-path: ellipse(60% 100% at 50% 100%);
+}
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #e2ecf4;
+  color: var(--navy-main);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+/* ---------------------------------- */
+/* RESPONSIVE LAYOUT & MEDIA QUERIES  */
+/* ---------------------------------- */
+
+.nav-links {
+  display: flex;
+  gap: 22px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.grid-5 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: 1.2fr repeat(4, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+
+/* Tablet & Mobile Breakpoints */
+@media (max-width: 900px) {
+  .nav-links {
+    display: none; /* Hide top menu links on smaller screens */
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .impact-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .impact-grid > div:nth-child(2),
+  .impact-grid > div:nth-child(3),
+  .impact-grid > div:nth-child(4),
+  .impact-grid > div:nth-child(5) {
+    border-left: none !important;
+    padding-left: 0 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-title {
+    font-size: 2.1rem !important;
+  }
+
+  .impact-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-nav {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav-links {
+    display: none; /* Hide standard links on mobile */
+  }
+
+  .mobile-menu-btn {
+    display: block !important; /* Show hamburger button on mobile */
+  }
+
+  /* ... existing mobile styles ... */
+}
+/* src/index.css */
+
+/* Reset & Base Layout */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Container constraints */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Responsive Navbar */
+.nav-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0a192f;
+}
+
+/* Responsive Impact & Program Grids */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+/* --- MEDIA QUERIES FOR MOBILE & TABLET --- */
+
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Header Adjustments */
+  .nav-links {
+    display: none; /* Hidden by default on mobile; toggled via state */
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eaecf0;
+    padding: 20px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  /* Responsive Hero Typography */
+  .hero-title {
+    font-size: 2.2rem !important;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem !important;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-buttons button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Impact Stats Layout */
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  /* Flex wrapper for user action buttons */
+  .user-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
