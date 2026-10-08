@@ -3,3 +3,5 @@ uvicorn
 pydantic
 SQLAlchemy
 python-multipart
+python-jose[cryptography]
+passlib
