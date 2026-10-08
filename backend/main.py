@@ -11,12 +11,18 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, EmailStr
+from fastapi.middleware.cors import CORSMiddleware
+from database import engine, Base  # Import your SQLAlchemy engine and Base
+
+# Automatically create all tables on server startup
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
 # Enable CORS for React dev server
 origins = [
-    "http://localhost:5173",
+"https://llg-foundation-app.vercel.app",  # Your Vercel frontend domain
+    "http://localhost:5173",                 # Local Vite React dev server
     "http://127.0.0.1:5173",
 ]
 

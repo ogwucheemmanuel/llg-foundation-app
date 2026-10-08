@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://llg-foundation-app.onrender.com';
+const API_BASE_URL = "https://llg-foundation-backend.onrender.com";
 
 export async function fetchImpactStats() {
   const res = await axios.get(`${API_BASE_URL}/impact-stats`);
