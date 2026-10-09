@@ -16,9 +16,9 @@ app = FastAPI()
 
 # Enable CORS for React dev server
 origins = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "https://llg-foundation-app.vercel.app/",
+    # "http://localhost:5173",
+    # "http://127.0.0.1:5173",
+    "https://llg-foundation-app.vercel.app",
 ]
 
 app.add_middleware(
