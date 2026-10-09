@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const API_BASE_URL = "https://llg-foundation-backend.onrender.com";
+const API_BASE_URL = "http://localhost:8000/api/v1";
 
-export async function fetchImpactStats() {
-  const res = await axios.get(`${API_BASE_URL}/impact-stats`);
-  return res.data;
+export async function fetchImpactStats(){};
+export const getImpactStats = async () => {
+  return await axios.get(`${API_BASE_URL}/impact-stats`);
 }
 
 export async function registerUser(userData) {
@@ -67,3 +67,18 @@ export async function fetchAllCSRPartners() {
   return res.data;
 }
 
+export async function deleteBeneficiary(id) {
+  const token = localStorage.getItem('token');
+  const res = await axios.delete(`${API_BASE_URL}/admin/beneficiaries/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+}
+
+export async function deleteCSRPartner(id) {
+  const token = localStorage.getItem('token');
+  const res = await axios.delete(`${API_BASE_URL}/admin/csr-partners/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+}

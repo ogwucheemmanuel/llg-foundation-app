@@ -11,18 +11,12 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, EmailStr
-from fastapi.middleware.cors import CORSMiddleware
-from database import engine, Base  # Import your SQLAlchemy engine and Base
-
-# Automatically create all tables on server startup
-Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
 # Enable CORS for React dev server
 origins = [
-"https://llg-foundation-app.vercel.app",  # Your Vercel frontend domain
-    "http://localhost:5173",                 # Local Vite React dev server
+    "http://localhost:5173",
     "http://127.0.0.1:5173",
 ]
 
@@ -129,7 +123,7 @@ def create_access_token(data: dict):
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 def get_db():
-    conn = sqlite3.connect("database.db")
+    conn = sqlite3.connect("database.db", check_same_thread=False)
     conn.row_factory = sqlite3.Row
     try:
         yield conn
@@ -241,25 +235,57 @@ def register_csr_partner(data: CSRPartnerRegister, db: sqlite3.Connection = Depe
     db.commit()
     return {"message": "CSR request submitted"}
 
-# 7. Admin Queries
+
+# --- ADMIN QUERIES ---
+
 @app.get("/api/v1/admin/beneficiaries")
 def get_all_beneficiaries(admin: dict = Depends(verify_admin), db: sqlite3.Connection = Depends(get_db)):
     cursor = db.cursor()
-    cursor.execute("SELECT * FROM beneficiaries ORDER BY id DESC")
+    cursor.execute("SELECT id, full_name, email, phone, track, created_at FROM beneficiaries ORDER BY id DESC")
     return [dict(row) for row in cursor.fetchall()]
 
 @app.get("/api/v1/admin/csr-partners")
 def get_all_csr_partners(admin: dict = Depends(verify_admin), db: sqlite3.Connection = Depends(get_db)):
     cursor = db.cursor()
-    cursor.execute("SELECT * FROM csr_partners ORDER BY id DESC")
+    cursor.execute("SELECT id, organization_name, contact_person, email, phone, partnership_type, created_at FROM csr_partners ORDER BY id DESC")
     return [dict(row) for row in cursor.fetchall()]
-
 class ContactSchema(BaseModel):
     name: str
     email: str
     subject: str
     message: str
+# --- DELETE ADMIN ENDPOINTS ---
 
+@app.delete("/api/v1/admin/beneficiaries/{beneficiary_id}")
+def delete_beneficiary(
+    beneficiary_id: int, 
+    admin: dict = Depends(verify_admin), 
+    db: sqlite3.Connection = Depends(get_db)
+):
+    cursor = db.cursor()
+    cursor.execute("SELECT id FROM beneficiaries WHERE id = ?", (beneficiary_id,))
+    if not cursor.fetchone():
+        raise HTTPException(status_code=404, detail="Beneficiary not found")
+        
+    cursor.execute("DELETE FROM beneficiaries WHERE id = ?", (beneficiary_id,))
+    db.commit()
+    return {"message": "Beneficiary deleted successfully"}
+
+@app.delete("/api/v1/admin/csr-partners/{partner_id}")
+def delete_csr_partner(
+    partner_id: int, 
+    admin: dict = Depends(verify_admin), 
+    db: sqlite3.Connection = Depends(get_db)
+):
+    cursor = db.cursor()
+    cursor.execute("SELECT id FROM csr_partners WHERE id = ?", (partner_id,))
+    if not cursor.fetchone():
+        raise HTTPException(status_code=404, detail="CSR Partner not found")
+        
+    cursor.execute("DELETE FROM csr_partners WHERE id = ?", (partner_id,))
+    db.commit()
+    return {"message": "CSR Partner deleted successfully"}
+    
 # Gmail Configuration
 GMAIL_USER = "ogwucheemmanuel2020@gmail.com"
 GMAIL_APP_PASSWORD = "Emmycoder2003"  # Generate in Google Account Security -> App Passwords

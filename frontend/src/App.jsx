@@ -21,11 +21,14 @@ import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
 import './index.css';
 import Team from './components/Team';
+import outreachVideo from './img/video1 (1).mp4';
+import outreachVideo1 from './img/video2.mp4';
+import outreachVideo2 from './img/video3.mp4';
 import { Users, Target, Calendar, Wallet } from 'lucide-react';
 
 export default function App() {
   const [stats, setStats] = useState({
-    youth_targeted: 100,
+    youth_targeted: 0,
     focus_areas: 5,
     pilot_duration: '3 Months',
     project_budget: '₦6.5M'
@@ -41,7 +44,9 @@ export default function App() {
 
   useEffect(() => {
     fetchImpactStats()
-      .then(data => setStats(data))
+      .then(data => {
+        if (data) setStats(data);
+      })
       .catch(err => console.error("Error fetching stats:", err));
 
     const token = localStorage.getItem('token');
@@ -103,14 +108,14 @@ export default function App() {
           </div>
 
           {/* Navigation Links */}
-<nav className={`nav-links ${isMobileMenuOpen ? 'open' : ''}`}>
-  <a href="#home" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#0a192f', textDecoration: 'none', fontWeight: '700', fontSize: '0.95rem' }}>Home</a>
-  <a href="#about" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#64748b', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>About Us</a>
-  <a href="#team" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#64748b', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>Team</a>
-  <a href="#programs" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#64748b', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>Programs</a>
-  <a href="#impact" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#64748b', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>Impact</a>
-  <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#64748b', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>Contact</a>
-</nav>
+          <nav className={`nav-links ${isMobileMenuOpen ? 'open' : ''}`}>
+            <a href="#home" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#0a192f', textDecoration: 'none', fontWeight: '700', fontSize: '0.95rem' }}>Home</a>
+            <a href="#about" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#64748b', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>About Us</a>
+            <a href="#team" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#64748b', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>Team</a>
+            <a href="#programs" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#64748b', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>Programs</a>
+            <a href="#impact" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#64748b', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>Impact</a>
+            <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#64748b', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>Contact</a>
+          </nav>
 
           {/* Right Actions Container */}
           <div className="right-actions-container" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginLeft: 'auto' }}>
@@ -190,24 +195,90 @@ export default function App() {
       <section id="impact" style={{ backgroundColor: '#0a192f', color: '#fff', padding: '48px 16px' }}>
         <div className="stats-grid" style={{ maxWidth: '1100px', margin: '0 auto', textAlign: 'center' }}>
           <div>
-            <h2 style={{ fontSize: '2.2rem', color: '#eab308', fontWeight: '800', marginBottom: '4px' }}>{stats.youth_targeted}+</h2>
+            <h2 style={{ fontSize: '2.2rem', color: '#eab308', fontWeight: '800', marginBottom: '4px' }}>{stats?.youth_targeted || 0}+</h2>
             <p style={{ fontSize: '0.88rem', color: '#94a3b8' }}>Youths Targeted</p>
           </div>
           <div>
-            <h2 style={{ fontSize: '2.2rem', color: '#eab308', fontWeight: '800', marginBottom: '4px' }}>{stats.focus_areas}</h2>
+            <h2 style={{ fontSize: '2.2rem', color: '#eab308', fontWeight: '800', marginBottom: '4px' }}>{stats?.focus_areas || 0}</h2>
             <p style={{ fontSize: '0.88rem', color: '#94a3b8' }}>Focus Areas</p>
           </div>
           <div>
-            <h2 style={{ fontSize: '2.2rem', color: '#eab308', fontWeight: '800', marginBottom: '4px' }}>{stats.pilot_duration}</h2>
+            <h2 style={{ fontSize: '2.2rem', color: '#eab308', fontWeight: '800', marginBottom: '4px' }}>{stats?.pilot_duration || 'N/A'}</h2>
             <p style={{ fontSize: '0.88rem', color: '#94a3b8' }}>Pilot Duration</p>
           </div>
           <div>
-            <h2 style={{ fontSize: '2.2rem', color: '#eab308', fontWeight: '800', marginBottom: '4px' }}>{stats.project_budget}</h2>
+            <h2 style={{ fontSize: '2.2rem', color: '#eab308', fontWeight: '800', marginBottom: '4px' }}>{stats?.project_budget || 'N/A'}</h2>
             <p style={{ fontSize: '0.88rem', color: '#94a3b8' }}>Project Budget</p>
           </div>
         </div>
       </section>
 
+      {/* Autoplay Outreach Media Section */}
+      <section id="outreach" style={{ padding: '60px 16px', backgroundColor: '#f8fafc' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', textAlign: 'center' }}>
+          <h2 style={{ fontSize: '1.8rem', fontWeight: '800', color: '#0a192f', marginBottom: '8px' }}>
+            Outreach Highlights
+          </h2>
+          <p style={{ color: '#64748b', fontSize: '0.95rem', marginBottom: '32px' }}>
+            See our recent sanitary product distribution and school outreach in real time.
+          </p>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: '20px',
+            justifyContent: 'center'
+          }}>
+            {[
+              { id: 1, src: outreachVideo, title: 'Sanitary Product Distribution' },
+              { id: 2, src: outreachVideo1, title: 'Student Engagement & Joy' },
+              { id: 3, src: outreachVideo2, title: 'School Event Recap' }
+            ].map((video) => (
+              <div 
+                key={video.id} 
+                style={{
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  backgroundColor: '#000',
+                  boxShadow: '0 10px 20px rgba(0,0,0,0.08)',
+                  position: 'relative'
+                }}
+              >
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{
+                    width: '100%',
+                    height: '420px',
+                    objectFit: 'cover',
+                    display: 'block'
+                  }}
+                >
+                  <source src={video.src} type="video/mp4" />
+                </video>
+
+                {/* Caption Overlay */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  background: 'linear-gradient(transparent, rgba(10, 25, 47, 0.85))',
+                  padding: '20px 14px 12px',
+                  color: '#fff',
+                  textAlign: 'left'
+                }}>
+                  <p style={{ margin: 0, fontSize: '0.85rem', fontWeight: '700' }}>
+                    {video.title}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       {/* About Us Component */}
       <AboutUs />
 
@@ -247,7 +318,7 @@ export default function App() {
       {/* Contact Us Component */}
       <ContactUs />
 
-            {/* Top Banner */}
+      {/* Top Banner */}
       <div style={{ backgroundColor: '#0a192f', color: '#fff', fontSize: '0.78rem', padding: '10px 16px', textAlign: 'center', fontWeight: '500' }}>
         <span>Proposed Nonprofit Organisation | Corporate Affairs Commission (CAC) Registration Pending</span>
       </div>

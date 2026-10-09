@@ -9,23 +9,23 @@ export default function Team() {
 const teamMembers = [
   {
     name: 'Unata Emmanuel Unata',
-    role: 'Founder & Lead Developer',
+    role: 'Founder & CEO',
     bio: 'Passionate about leveraging technology and community empowerment to drive sustainable social impact.',
     image: emmanuelPhoto, 
-    email: 'ogwucheemmanuel2020@gmail.com'
+    email: 'emmanuelunata1@gmail.com'
   },
     {
-      name: 'Dr. Sarah Adebayo',
-      role: 'Head of Programs & Education',
-      bio: 'Directs curriculum strategy for digital literacy and community skill acquisition workshops.',
+      name: 'Olekwu Jessica Adanu',
+      role: 'Treasurer',
+      bio: 'manages financial records budgeting, and financial reporting to ensure transparency and effective resource management',
       image: emmanuelwife,
       linkedin: '#',
       twitter: '#',
-      email: 'sarah@llgfoundation.org'
+      email: 'adanujessicaolekwu@gmail.com'
     },
     {
       name: 'Unata kenneth Oche',
-      role: 'Operations & Partnerships Lead',
+      role: 'ICT Manager',
       bio: 'Manages corporate partnerships, donor communications, and field resource logistics.',
       image: keno,
       linkedin: '#',
@@ -34,7 +34,7 @@ const teamMembers = [
     },
         {
       name: 'Ogwuche Joseph Emmanuel',
-      role: 'Software Engineering',
+      role: 'ICT team Leader',
       bio: 'Focused on software development, web technologies, and building user-centric digital solution.',
       image: emmycoder,
       linkedin: '#',

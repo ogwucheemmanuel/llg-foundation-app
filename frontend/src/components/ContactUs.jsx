@@ -55,7 +55,8 @@ export default function ContactUs() {
                   </div>
                   <div>
                     <h4 style={{ fontSize: '0.9rem', fontWeight: '700', color: '#0a192f', marginBottom: '2px' }}>Email Us</h4>
-                    <p style={{ color: '#64748b', fontSize: '0.88rem' }}>ogwucheemmanuel2020@gmail.com</p>
+                    <p style={{ color: '#64748b', fontSize: '0.88rem' }}>
+leadinglovinggodfoundation@gmail.com </p>
                   </div>
                 </div>
 
@@ -65,7 +66,7 @@ export default function ContactUs() {
                   </div>
                   <div>
                     <h4 style={{ fontSize: '0.9rem', fontWeight: '700', color: '#0a192f', marginBottom: '2px' }}>Call Us</h4>
-                    <p style={{ color: '#64748b', fontSize: '0.88rem' }}>+234 (0) 800 000 0000</p>
+                    <p style={{ color: '#64748b', fontSize: '0.88rem' }}>+234 (0) 81 2200 3786</p>
                   </div>
                 </div>
 
@@ -75,7 +76,7 @@ export default function ContactUs() {
                   </div>
                   <div>
                     <h4 style={{ fontSize: '0.9rem', fontWeight: '700', color: '#0a192f', marginBottom: '2px' }}>Office Address</h4>
-                    <p style={{ color: '#64748b', fontSize: '0.88rem' }}>Lagos, Nigeria</p>
+                    <p style={{ color: '#64748b', fontSize: '0.88rem' }}>Flat 3B Gen. popoola close phase 1 Army Estate kurudu Abuja, Nigeria</p>
                   </div>
                 </div>
               </div>
