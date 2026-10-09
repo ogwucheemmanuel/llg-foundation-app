@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = "http://localhost:8000/api/v1";
+const API_BASE_URL = "https://llg-foundation-app.onrender.com/api/v1";
 
 export async function fetchImpactStats(){};
 export const getImpactStats = async () => {

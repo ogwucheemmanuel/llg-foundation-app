@@ -18,6 +18,7 @@ app = FastAPI()
 origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "https://llg-foundation-app.vercel.app/",
 ]
 
 app.add_middleware(
@@ -285,7 +286,7 @@ def delete_csr_partner(
     cursor.execute("DELETE FROM csr_partners WHERE id = ?", (partner_id,))
     db.commit()
     return {"message": "CSR Partner deleted successfully"}
-    
+
 # Gmail Configuration
 GMAIL_USER = "ogwucheemmanuel2020@gmail.com"
 GMAIL_APP_PASSWORD = "Emmycoder2003"  # Generate in Google Account Security -> App Passwords
